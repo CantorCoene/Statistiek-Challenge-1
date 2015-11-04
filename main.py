@@ -4,7 +4,7 @@ import statistics
 
 
 # We maken een file variable aan die de data in de txt file opslaagd.
-data_file = open('testdata.txt', 'r')
+data_file = open('gr7.txt', 'r')
 
 # We slagen de volledige data op in een string, en maken daarna een lijst met de verschillende lijnen.
 data_string = data_file.read()
@@ -18,7 +18,7 @@ for lines in data_list:
 	
     # omdat onze line variabele van de volgende vorm is:
     # "n1\tp1\tn2\tp2"
-    # vinden we dat p1 = line[2] en p2 = line[6]
+    # vinden we dat p1 = line[2] en p2 = line[7]
     
     y2 = int(lines[7])*0.1
     y1 = int(lines[2])*0.1
