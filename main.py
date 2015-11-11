@@ -5,14 +5,14 @@ import statistics, functions
 data = open('gr7.txt', 'r')
 data_string = data.read()  # Slaag de data op en een string
 data_split = data_string.splitlines()  # Maak een lijst aan waarvan elk element een string is die de respectievelijke lijnen voorsteld.
-data_lines = list(map(functions.getnumbers, data_split))  # Op deze lijst voeren we de getnumbers functie. Zie functie.py voor uitleg
+data_lines = list(map(functions.getnumbers, data_split))  # Op deze lijst voeren we de getnumbers functie. Zie functions.py voor uitleg
 data.close()  # Sluit de file voor geheugen gebruik
 
 # We maken een lijst aan met alle ys waarden.
 try:
     ys_list = []
     for l in data_lines:
-        # Berken y2 en y1 door gebruik te maken van de discrete hoogte van de sensor.
+        # Bereken y2 en y1 door gebruik te maken van de discrete hoogte van de sensor.
         y2 = int(l[3])*0.1
         y1 = int(l[1])*0.1
 
@@ -31,15 +31,15 @@ except:
 
 
 resolutie = statistics.stdev(ys_list)  # Bereken de standaard afwijking op de waarden van ys.
-gemmidelde = functions.arit_average(ys_list)  # Bereken de gemmiddelde ys
+gemiddelde = functions.arit_average(ys_list)  # Bereken de gemiddelde ys
 
 
-print('De gemmidelde waarde voor de positie van de bron is: {} cm.\n'
-      'De resolutie van de data is: {}\n'
-      .format(gemmidelde, resolutie))  # Print de waarden uit naar de terminal.
+print('De gemidelde waarde voor de positie van de bron is: {} cm.\n'
+      'De resolutie van de data is: {} cm.\n'
+      .format(gemiddelde, resolutie))  # Print de waarden uit naar de terminal.
 
 # We schrijven de waarden van ys en hun frequentie uit op een .dat bestand voor GNUplot.
-counted_ys = list(functions.makeCountedList(ys_list))  # Maak een countedlist van ys waarden. Zie functions voor uitleg.
+counted_ys = list(functions.makeCountedList(ys_list))  # Maak een countedlist van ys waarden. Zie functions.py voor uitleg.
 try:
 
     gr7dat = open('gr7dat.dat', 'w')  # Maak een bestand aan gr7dat.dat
@@ -56,6 +56,7 @@ except:
     print('Error when printing data onto .dat file')
     gr7dat.close()
 
+    
 
 
 

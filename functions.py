@@ -13,7 +13,7 @@ def getnumbers(arg_string):
     retu.append(st)
     return retu
 
-# Gegeven een lijst met floats, int's geeft deze functie het rekenkundig gemmidelde.
+# Gegeven een lijst met floats, int's geeft deze functie het rekenkundig gemiddelde.
 def arit_average(arg_list):
     av = 0
     for i in arg_list:
