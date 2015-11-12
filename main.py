@@ -34,7 +34,7 @@ resolutie = statistics.stdev(ys_list)  # Bereken de standaard afwijking op de wa
 gemiddelde = functions.arit_average(ys_list)  # Bereken de gemiddelde ys
 
 
-print('De gemidelde waarde voor de positie van de bron is: {} cm.\n'
+print('De gemiddelde waarde voor de positie van de bron is: {} cm.\n'
       'De resolutie van de data is: {} cm.\n'
       .format(gemiddelde, resolutie))  # Print de waarden uit naar de terminal.
 
