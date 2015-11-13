@@ -25,9 +25,8 @@ def arit_average(arg_list):
 def makeCountedList(arg_list):
      countedlist = set([])
 
-     for ys in arg_list:
-         c = arg_list.count(ys)
-         countedlist.add('{}\t{}'.format(c, ys))
+     for var in arg_list:
+         c = arg_list.count(var)
+         countedlist.add('{}\t{}'.format(var, c))
 
      return countedlist
-

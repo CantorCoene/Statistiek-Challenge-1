@@ -12,21 +12,25 @@ data.close()  # Sluit de file voor geheugen gebruik
 try:
     hoek_list = []
     for l in data_lines:
-        # Bereken y2 en y1 door gebruik te maken van de discrete hoogte van de sensor.
-        y2b = int(l[3])*0.1 - 0.05
-        y1b = int(l[1])*0.1 - 0.05
+        # Uitfilteren nulwaarden.
+        if int(l[1]) is not 0 and int(l[3]) is not 0:
+            # Bereken y2 en y1 door gebruik te maken van de discrete hoogte van de sensor.
+            y2 = int(l[3])*0.1 - 0.05
+            y1 = int(l[1])*0.1 - 0.05
 
-        # Gebruik de gegeven waarde voor de afstanden van de sensorplaat.
-        x2 = 10.7
-        x1 = 4.4
+            # Gebruik de gegeven waarde voor de afstanden van de sensorplaat.
+            x2 = 10.7
+            x1 = 4.4
 
-        # Bereken de richtingscoëficient van de baan van het deeltje.
-        hoek = math.atan2((y2b - y1b),(x2 - x1))
-        h = math.degrees(hoek)
-        hoek_list.append(h)
-        
+            # Bereken de richtingscoëficient van de baan van het deeltje.
+            hoek = math.atan2((y2 - y1),(x2 - x1))
+            h = math.degrees(hoek)
+            hoek_list.append(h)
+        else:
+            # Deze waarden mogen niet meegerekend worden en dan gaan we naar de volgende.
+            l += l        
 except:
-    print('Something went wrong while calculating.')
+    print('Something went wrong while calculating the angle values.')
 
 # Ter controle of waarden ergens steek houden, berekenen we de gemiddelden vaan de hoeken.
 average = functions.arit_average(hoek_list)
@@ -49,12 +53,9 @@ try:
         sgr7dat2 += i
         sgr7dat2 += '\n'
     gr7dat2.write(sgr7dat2)
-    print('\nPrinted hoek data onto gr7dat2.dat')
+    print('\nPrinted angle data onto gr7dat2.dat')
     gr7dat2.close()
 except:
     print('Error')
     gr7dat2.close()
-    
-
-        
     
