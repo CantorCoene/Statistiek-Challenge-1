@@ -9,34 +9,30 @@ data_split = data_string.splitlines()  # Maak een lijst aan waarvan elk element 
 data_lines = list(map(functions.getnumbers, data_split))  # Op deze lijst voeren we de getnumbers functie. Zie functie.py voor uitleg
 data.close()  # Sluit de file voor geheugen gebruik
 
-# Eventueel werken met gemiddelde ys, hier nog eens de berekening.
+# Bereken en oplijsten van de waarden voor de hoeken die we zoeken.
 try:
     hoek_list = []
     for l in data_lines:
         # Uitfilteren nulwaarden.
         if int(l[1]) is not 0 and int(l[3]) is not 0:
             # Bereken y2 en y1 door gebruik te maken van de discrete hoogte van de sensor.
-            y2 = int(l[3])*0.1 - 0.05
-            y1 = int(l[1])*0.1 - 0.05
-
-            # Gebruik de gegeven waarde voor de afstanden van de sensorplaat.
-            x2 = 10.7
-            x1 = 4.4
+            y2 = float(l[3])*0.1 - 0.05
+            y1 = float(l[1])*0.1 - 0.05
 
             # Bereken de richtingscoëficient van de baan van het deeltje.
-            hoek = math.atan2((y2 - y1),(x2 - x1))
+            hoek = math.atan2((y2 - y1),(10.7 - 4.4)) # x-positie van de strips in de noemer
             hoek_list.append(hoek)
         else:
             # Deze waarden mogen niet meegerekend worden en dan gaan we naar de volgende.
-            l += l        
+            continue        
 except:
     print('Something went wrong while calculating the angle values.')
 
-# Ter controle of waarden ergens steek houden, berekenen we de gemiddelden vaan de hoeken.
+# Ter controle of waarden steek houden, berekenen we de gemiddelden vaan de hoeken.
 average = functions.arit_average(hoek_list)
 resolution = statistics.stdev(hoek_list)
-print('Gemiddelde hoek is: {} graden.\n'
-      'Resolutie hoek is: {} graden.\n'
+print('Gemiddelde hoek is: {} rad.\n'
+      'Resolutie hoek is: {} rad.\n'
       .format(average, resolution))
 # Einde controle.
 
