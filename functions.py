@@ -21,7 +21,7 @@ def arit_average(arg_list):
     av = av/len(arg_list)
     return av
 
-# Geeft een set terug van strings van de vorm 'frequentieVanWaarde   Waarde'. Gegeven een lijst van waarden.
+# Geeft een set terug van strings van de vorm 'Waarde   frequentieVanWaarde', gegeven een lijst van waarden.
 def makeCountedList(arg_list):
      countedlist = set([])
 

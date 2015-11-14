@@ -1,5 +1,6 @@
 # Nodige imports
 import statistics, functions, math
+import matplotlib.pyplot as plt
 
 # Open de data.
 data = open('gr7.txt', 'r')
@@ -24,8 +25,7 @@ try:
 
             # Bereken de richtingscoëficient van de baan van het deeltje.
             hoek = math.atan2((y2 - y1),(x2 - x1))
-            h = math.degrees(hoek)
-            hoek_list.append(h)
+            hoek_list.append(hoek)
         else:
             # Deze waarden mogen niet meegerekend worden en dan gaan we naar de volgende.
             l += l        
@@ -58,4 +58,15 @@ try:
 except:
     print('Error')
     gr7dat2.close()
+
+# We maken een histogramplot van de waarden voor de hoeken.
+try:
+    plt.hist(hoek_list)
+    plt.title("Histogram van angulaire verdeling")
+    plt.xlabel("Hoek (rad)")
+    plt.ylabel("Frequentie")
+    plt.show()
+    print('\nPlot made succesfully')
+except:
+    print('\n Something went wrong while plotting')
     

@@ -1,5 +1,6 @@
 # Nodige imports
-import statistics, functions
+import statistics, functions, numpy
+import matplotlib.pyplot as plt
 
 # Open de data.
 data = open('gr7.txt', 'r')
@@ -34,7 +35,6 @@ try:
 except:
     print('Something went wrong while calculating the ys values.')
 
-
 resolutie = statistics.stdev(ys_list)  # Bereken de standaard afwijking op de waarden van ys.
 gemiddelde = functions.arit_average(ys_list)  # Bereken de gemiddelde ys
 
@@ -61,7 +61,15 @@ except:
     print('Error when printing data onto .dat file')
     gr7dat.close()
 
-    
+# We plotten de waarden van ys volgens een histogram.
+try:
+    plt.hist(ys_list)
+    plt.title("Histogram van bronhoogte")
+    plt.xlabel("Hoogte (cm)")
+    plt.ylabel("Frequentie")
+    plt.show()
+except:
+    print('\n Something went wrong while plotting')
 
 
 
