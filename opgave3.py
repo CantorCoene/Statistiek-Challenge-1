@@ -35,38 +35,14 @@ except:
 # Ter controle of waarden ergens steek houden, berekenen we de gemiddelden vaan de hoeken.
 average = functions.arit_average(hoek_list)
 resolution = statistics.stdev(hoek_list)
-
 print('Gemiddelde hoek is: {} graden.\n'
       'Resolutie hoek is: {} graden.\n'
       .format(average, resolution))
 # Einde controle.
 
-
-# We schrijven de waarden van de hoeken uit op een .dat bestand voor verder gebruik.
-counted_hoek = list(functions.makeCountedList(hoek_list))
-try:
-
-    gr7dat2 = open ('gr7dat2.dat', 'w')
-
-    sgr7dat2 = ''
-    for i in counted_hoek:
-        sgr7dat2 += i
-        sgr7dat2 += '\n'
-    gr7dat2.write(sgr7dat2)
-    print('\nPrinted angle data onto gr7dat2.dat')
-    gr7dat2.close()
-except:
-    print('Error')
-    gr7dat2.close()
-
 # We maken een histogramplot van de waarden voor de hoeken.
-try:
-    plt.hist(hoek_list)
-    plt.title("Histogram van angulaire verdeling")
-    plt.xlabel("Hoek (rad)")
-    plt.ylabel("Frequentie")
-    plt.show()
-    print('\nPlot made succesfully')
-except:
-    print('\n Something went wrong while plotting')
-    
+plt.hist(hoek_list)
+plt.title("Histogram van angulaire verdeling")
+plt.xlabel("Hoek (rad)")
+plt.ylabel("Frequentie")
+plt.show() 
