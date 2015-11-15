@@ -2,19 +2,15 @@
 import statistics, functions, numpy
 import matplotlib.pyplot as plt
 
-# Open de data.
-data = open('gr7.txt', 'r')
-data_string = data.read()  # Slaag de data op en een string
-data_split = data_string.splitlines()  # Maak een lijst aan waarvan elk element een string is die de respectievelijke lijnen voorsteld.
-data_lines = list(map(functions.getnumbers, data_split))  # Op deze lijst voeren we de getnumbers functie. Zie functions.py voor uitleg
-data.close()  # Sluit de file voor geheugen gebruik
+# We lezen de data.
+data = numpy.loadtxt('gr7.txt')
 
 # We maken een lijst aan met alle ys waarden.
 try:
     ys_list = []
-    for l in data_lines:
+    for l in data:
         # We filteren de nulwaarden uit de data.
-        if int(l[1]) is not 0 and int(l[3]) is not 0:
+        if int(l[0]) is not 0 and int(l[2]) is not 0:
             # Bereken y2 en y1 door gebruik te maken van de discrete hoogte van de sensor.
             y2 = float(l[3])*0.1-0.05
             y1 = float(l[1])*0.1-0.05
